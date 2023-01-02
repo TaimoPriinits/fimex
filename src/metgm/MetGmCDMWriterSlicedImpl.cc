@@ -69,7 +69,7 @@ void MetGmCDMWriterSlicedImpl::writeGroup5Data(const MetGmCDMVariableProfile& pr
         DataPtr raw_slice = cdmReader->getScaledDataSliceInUnit(pVar->getName(), profile.units_, slice_index);
         shared_array<float> slice_to_write = raw_slice->asFloat();
         profile.pTags_->sliceToMetGmLayout(slice_to_write);
-        MGM_THROW_ON_ERROR(mgm_write_group5_slice(*metgmFileHandle_, *metgmHandle_, slice_to_write.get(), &cSlicePos));
+        MGM_THROW_ON_ERROR(mgm_write_group5_slice(*metgmFileHandle_, *metgmHandle_, slice_to_write.get(), total_num_of_slices, &cSlicePos));
     }
 }
 

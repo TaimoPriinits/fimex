@@ -492,7 +492,7 @@ std::shared_ptr<MetGmGroup5Ptr> MetGmGroup5Ptr::createMetGmGroup5PtrForReading(c
                             for(int slice_index = 1; slice_index <= nt; ++slice_index)
                             {
                                 size_t cSlicePos = 0;
-                                call_result = mgm_skip_group5_slice(fh, mh, &cSlicePos);
+                                call_result = mgm_skip_group5_slice(fh, mh, nt, &cSlicePos);
                                 if(call_result != MGM_OK) {
                                     mgm_free_group3(gp3);
                                     mgm_free_handle(mh);
@@ -514,7 +514,7 @@ std::shared_ptr<MetGmGroup5Ptr> MetGmGroup5Ptr::createMetGmGroup5PtrForReading(c
                             for(size_t slice_index = 1; slice_index <= hdTag_->tSize(); ++slice_index)
                             {
                                 size_t cSlicePos = -1;
-                                call_result = mgm_read_group5_slice(fh, mh, data.get() + (slices_read * hdTag_->sliceSize()), &cSlicePos);
+                                call_result = mgm_read_group5_slice(fh, mh, data.get() + (slices_read * hdTag_->sliceSize()), hdTag_->tSize(), &cSlicePos);
                                 if(call_result != MGM_OK) {
                                     mgm_free_group3(gp3);
                                     mgm_free_handle(mh);
